@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Cormorant Garamond"', 'serif'],
-        body: ['"DM Sans"', 'sans-serif'],
+        display: ['Montserrat', 'sans-serif'],
+        body: ['Outfit', 'sans-serif'],
         mono: ['"DM Mono"', 'monospace'],
       },
       colors: {
