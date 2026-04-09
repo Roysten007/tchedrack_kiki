@@ -1,0 +1,7 @@
+node_modules
+.gemini
+dist
+.git
+.vscode
+.env
+README.md
