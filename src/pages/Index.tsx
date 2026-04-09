@@ -28,11 +28,7 @@ const Index = () => {
     emblaApi.on('select', onSelect);
 
     const autoplay = setInterval(() => {
-      if (emblaApi.canScrollNext()) {
-        emblaApi.scrollNext();
-      } else {
-        emblaApi.scrollTo(0);
-      }
+      emblaApi.scrollNext();
     }, 4000);
 
     return () => clearInterval(autoplay);
@@ -337,9 +333,9 @@ const Index = () => {
 
             <div className="relative group">
               <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-                <div className="flex h-full">
+                <div className="flex items-stretch gap-6">
                   {sectorEvidence.map((s, i) => (
-                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_48%] lg:flex-[0_0_32%] pl-6 first:pl-0 h-full">
+                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_48%] lg:flex-[0_0_32%] min-w-0">
                       <AnimatedSection delay={i * 0.1} className="h-full">
                         <div className="bg-[#111111] border-t-2 border-primary p-8 md:p-10 rounded-2xl h-full flex flex-col hover:translate-y-[-4px] transition-transform duration-300 shadow-xl">
                           <div className="mb-6">
@@ -374,8 +370,8 @@ const Index = () => {
                   <button
                     key={i}
                     onClick={() => emblaApi?.scrollTo(i)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      selectedIndex === i ? 'bg-primary w-12' : 'bg-white/10'
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      selectedIndex === i ? 'bg-primary w-12' : 'bg-white/20 w-4'
                     }`}
                   />
                 ))}
