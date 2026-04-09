@@ -349,10 +349,10 @@ const Index = () => {
             </AnimatedSection>
 
             <div className="relative">
-              <div className="overflow-hidden rounded-2xl" ref={emblaRef}>
+              <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex">
                   {sectorEvidence.map((s, i) => (
-                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 px-3">
+                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_50%] min-w-0 px-3">
                       <div className="bg-[#0D0D0D] border border-white/5 border-t-2 border-t-primary p-8 rounded-2xl flex flex-col" style={{ minHeight: '340px' }}>
                         <div className="mb-5">
                           <CounterNumber 
@@ -385,7 +385,7 @@ const Index = () => {
                   <button
                     key={i}
                     onClick={() => emblaApi?.scrollTo(i)}
-                    className="nav-reset transition-all duration-300 rounded-full bg-primary/20"
+                    className="nav-reset transition-all duration-300 rounded-full"
                     style={{
                       width: selectedIndex === i ? '2.5rem' : '0.5rem',
                       height: '0.375rem',
