@@ -2,6 +2,7 @@ import { useLang } from '@/context/LanguageContext';
 import AnimatedSection from '@/components/AnimatedSection';
 import CounterNumber from '@/components/CounterNumber';
 import { motion } from 'framer-motion';
+import { Instagram, Mail, MessageCircle } from 'lucide-react';
 import { useState, useCallback, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import {
