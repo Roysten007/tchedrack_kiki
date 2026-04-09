@@ -352,8 +352,9 @@ const Index = () => {
         </div>
       </section>
 
-          {/* New Evidence Section */}
-          <div className="mb-32">
+      <section id="preuves" className="py-12 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-16">
             <AnimatedSection className="text-center mb-16">
               <span className="font-mono text-primary text-xs uppercase tracking-[0.2em]">{t("PREUVES SECTORIELLES", "SECTOR EVIDENCE")}</span>
               <h2 className="font-montserrat text-4xl md:text-5xl text-foreground mt-4 mb-4">
@@ -385,7 +386,7 @@ const Index = () => {
                         </span>
                         <div className="mt-auto pt-5 border-t border-white/5">
                           <p className="font-serif-display italic text-foreground/60 text-lg leading-relaxed">
-                            "{t(s.interpretationFr, s.interpretationEn)}"
+                            &ldquo;{t(s.interpretationFr, s.interpretationEn)}&rdquo;
                           </p>
                         </div>
                       </div>
