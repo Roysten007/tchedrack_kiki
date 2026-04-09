@@ -167,7 +167,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       {/* ===== HERO ===== */}
       <section id="accueil" className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
         {/* Hero Background Image */}
@@ -209,7 +209,7 @@ const Index = () => {
 
       {/* ===== SOCIAL PROOF ===== */}
       <section className="py-20 bg-card/30 border-y border-white/5">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {stats.map((stat, i) => (
             <AnimatedSection key={i} delay={i * 0.1} className="text-center flex flex-col gap-2">
               <CounterNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} className="text-3xl md:text-4xl" />
@@ -460,7 +460,7 @@ const Index = () => {
       <section id="contact" className="py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection className="mb-12">
-            <h2 className="font-display italic text-3xl md:text-5xl text-foreground leading-tight">
+            <h2 className="font-display italic text-2xl md:text-5xl text-foreground leading-tight px-4">
               {t("Tu as une annonce qui stagne ? Envoie-la moi.", "Got a listing that's stagnating? Send it to me.")}
             </h2>
           </AnimatedSection>
@@ -475,7 +475,7 @@ const Index = () => {
             </a>
           </AnimatedSection>
           <AnimatedSection delay={0.3} className="mb-24">
-            <div className="flex flex-row gap-12 justify-center items-center mt-12 px-4 flex-wrap">
+            <div className="flex flex-row gap-6 md:gap-12 justify-center items-center mt-12 px-4 flex-wrap">
               {channels.map((ch, i) => (
                 <a key={i} href={ch.href} title={ch.label} target="_blank" rel="noopener noreferrer" data-hoverable className="transition-all hover:scale-125">
                   <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#111111] border border-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-500 premium-card">
