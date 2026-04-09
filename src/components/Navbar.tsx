@@ -27,10 +27,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <button onClick={() => scrollTo('accueil')} className="flex items-center gap-3 nav-reset" data-hoverable>
-          <span className="font-display italic text-2xl text-primary font-bold">KT</span>
-          <span className="text-foreground/70 text-xs uppercase tracking-[0.2em] font-body hidden sm:block">
-            L'Encre Immo
-          </span>
+          <img src="/logo.jpg" alt="Logo" className="h-10 w-auto object-contain" />
         </button>
 
         {/* Desktop Nav */}
