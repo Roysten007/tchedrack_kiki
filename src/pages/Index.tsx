@@ -316,7 +316,19 @@ const Index = () => {
           <AnimatedSection>
             <div className="flex flex-col md:flex-row items-stretch bg-[#0D0D0D] border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
               
-              {/* Text — Left */}
+              {/* Image — Left */}
+              <div className="w-full md:w-[45%] flex-shrink-0 relative group min-h-[400px] md:min-h-auto">
+                <img
+                  src="/portrait.jpg"
+                  alt="KIKI Tchédrak"
+                  className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700"
+                  style={{ filter: 'contrast(110%) brightness(105%)' }}
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[#0D0D0D]/80 via-[#0D0D0D]/20 to-transparent md:from-[#0D0D0D] md:via-transparent md:to-transparent" />
+              </div>
+
+              {/* Text — Right */}
               <div className="flex-1 flex flex-col justify-center gap-10 p-8 md:p-16 text-left">
                 <div className="flex flex-col gap-6">
                   <blockquote className="font-display italic font-semibold text-foreground leading-tight" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}>
@@ -333,18 +345,6 @@ const Index = () => {
                   <p className="font-display italic text-foreground text-xl md:text-2xl">{t("Je ne fais pas du joli. Je fais du rentable.", "I don't do pretty. I do profitable.")}</p>
                   <p className="font-display italic text-foreground/50 text-xl md:text-2xl">{t("Je ne travaille pas avec tout le monde.", "I don't work with everyone.")}</p>
                 </div>
-              </div>
-
-              {/* Image — Right */}
-              <div className="w-full md:w-[45%] flex-shrink-0 relative group min-h-[400px] md:min-h-auto">
-                <img
-                  src="/portrait.jpg"
-                  alt="KIKI Tchédrak"
-                  className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700"
-                  style={{ filter: 'contrast(110%) brightness(105%)' }}
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0D0D0D]/80 via-[#0D0D0D]/20 to-transparent md:from-[#0D0D0D] md:via-transparent md:to-transparent" />
               </div>
 
             </div>
