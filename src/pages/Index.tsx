@@ -26,6 +26,16 @@ const Index = () => {
     if (!emblaApi) return;
     onSelect();
     emblaApi.on('select', onSelect);
+
+    const autoplay = setInterval(() => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0);
+      }
+    }, 4000);
+
+    return () => clearInterval(autoplay);
   }, [emblaApi, onSelect]);
 
   const stats = [
@@ -327,11 +337,11 @@ const Index = () => {
 
             <div className="relative group">
               <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-                <div className="flex">
+                <div className="flex h-full">
                   {sectorEvidence.map((s, i) => (
-                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_50%] pl-6 first:pl-0">
-                      <AnimatedSection delay={i * 0.1}>
-                        <div className="bg-[#111111] border-t-2 border-primary p-8 md:p-10 rounded-2xl h-full flex flex-col hover:translate-y-[-4px] transition-transform duration-300">
+                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_48%] lg:flex-[0_0_32%] pl-6 first:pl-0 h-full">
+                      <AnimatedSection delay={i * 0.1} className="h-full">
+                        <div className="bg-[#111111] border-t-2 border-primary p-8 md:p-10 rounded-2xl h-full flex flex-col hover:translate-y-[-4px] transition-transform duration-300 shadow-xl">
                           <div className="mb-6">
                             <CounterNumber 
                               value={s.value} 
@@ -342,14 +352,14 @@ const Index = () => {
                             />
                           </div>
                           
-                          <p className="font-sans-body text-foreground font-medium text-xl md:text-2xl leading-tight mb-2">
+                          <p className="font-sans-body text-foreground font-medium text-xl md:text-2xl leading-tight mb-4">
                             {t(s.labelFr, s.labelEn)}
                           </p>
                           <span className="font-mono text-[10px] text-primary/50 uppercase tracking-wider mb-6">
                             {s.source}
                           </span>
-                          <div className="mt-auto pt-6 border-t border-white/5">
-                            <p className="font-serif-display italic text-foreground/70 text-xl leading-relaxed">
+                          <div className="mt-auto pt-8 border-t border-white/5">
+                            <p className="font-serif-display italic text-foreground/70 text-2xl leading-relaxed">
                               "{t(s.interpretationFr, s.interpretationEn)}"
                             </p>
                           </div>
@@ -364,8 +374,8 @@ const Index = () => {
                   <button
                     key={i}
                     onClick={() => emblaApi?.scrollTo(i)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      selectedIndex === i ? 'bg-primary w-10' : 'bg-white/10'
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      selectedIndex === i ? 'bg-primary w-12' : 'bg-white/10'
                     }`}
                   />
                 ))}
@@ -377,12 +387,10 @@ const Index = () => {
                 {t("Le copywriting immobilier n'est pas une dépense. C'est un levier de performance mesurable.", "Real estate copywriting isn't an expense. It's a measurable performance lever.")}
               </p>
             </AnimatedSection>
-          </div>
-        </div>
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section id="services" className="py-32 px-6">
+      <section id="services" className="py-12 px-6">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
             <h2 className="font-display text-4xl md:text-5xl text-foreground mt-4 leading-tight">
