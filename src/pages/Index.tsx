@@ -306,42 +306,44 @@ const Index = () => {
       </section>
 
       {/* ===== ABOUT ===== */}
-      <section id="a-propos" className="py-32 px-6">
+      <section id="a-propos" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16 mb-20">
-            {/* Photo — Left */}
-            <AnimatedSection className="flex-shrink-0 mx-auto md:mx-0">
-              <div className="w-72 h-96 bg-[#111111] rounded-3xl overflow-hidden relative premium-card group">
+          <AnimatedSection>
+            <div className="flex flex-col md:flex-row items-stretch bg-[#0D0D0D] border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+              
+              {/* Photo — Left */}
+              <div className="flex-shrink-0 w-full md:w-72 h-80 md:h-auto relative group">
                 <img 
                   src="/portrait.jpg" 
                   alt="KIKI Tchédrak" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" 
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700" 
                   style={{ filter: 'contrast(112%) brightness(108%)' }}
                   loading="lazy" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0D0D0D] via-transparent to-transparent" />
               </div>
-            </AnimatedSection>
 
-            {/* Text — Right */}
-            <AnimatedSection delay={0.15} className="text-left">
-              <span className="font-mono text-primary text-[10px] uppercase tracking-[0.25em] mb-4 block">
-                {t('À Propos', 'About')}
-              </span>
-              <blockquote className="font-serif-display italic text-2xl md:text-3xl lg:text-4xl text-foreground leading-snug mb-6">
-                "{t("Je ne suis pas agent immobilier. Je suis celui qui fait sonner le téléphone des agents immobiliers.", "I'm not a real estate agent. I'm the one who makes real estate agents' phones ring.")}"
-              </blockquote>
-              <p className="text-foreground/60 font-body text-base md:text-lg leading-relaxed">
-                {t("KIKI Tchédrak — Copywriter immobilier. Spécialiste en réécriture d'annonces, prospection email et conversion digitale pour les conseillers indépendants.", "KIKI Tchédrak — Real estate copywriter. Specialist in listing rewrites, email prospecting, and digital conversion for independent advisors.")}
-              </p>
-            </AnimatedSection>
-          </div>
+              {/* Text — Right */}
+              <div className="flex flex-col justify-center gap-6 p-8 md:p-12 text-left">
+                <span className="font-mono text-primary text-[10px] uppercase tracking-[0.25em]">
+                  {t('À Propos · KIKI Tchédrak', 'About · KIKI Tchédrak')}
+                </span>
 
+                <blockquote className="font-serif-display italic text-xl md:text-2xl lg:text-3xl text-foreground leading-snug">
+                  "{t("Je ne suis pas agent immobilier. Je suis celui qui fait sonner le téléphone des agents immobiliers.", "I'm not a real estate agent. I'm the one who makes real estate agents' phones ring.")}"
+                </blockquote>
 
+                <p className="text-foreground/60 font-body text-sm md:text-base leading-relaxed">
+                  {t("KIKI Tchédrak — Copywriter immobilier. Spécialiste en réécriture d'annonces, prospection email et conversion digitale pour les conseillers indépendants.", "KIKI Tchédrak — Real estate copywriter. Specialist in listing rewrites, email prospecting, and digital conversion for independent advisors.")}
+                </p>
 
-          <AnimatedSection className="mb-24 text-center">
-            <p className="font-display italic text-2xl md:text-3xl text-foreground mb-4">{t("Je ne fais pas du joli. Je fais du rentable.", "I don't do pretty. I do profitable.")}</p>
-            <p className="font-display italic text-2xl md:text-3xl text-foreground/70">{t("Je ne travaille pas avec tout le monde.", "I don't work with everyone.")}</p>
+                <div className="border-t border-white/5 pt-6 flex flex-col gap-2">
+                  <p className="font-display italic text-lg md:text-xl text-foreground">{t("Je ne fais pas du joli. Je fais du rentable.", "I don't do pretty. I do profitable.")}</p>
+                  <p className="font-display italic text-lg md:text-xl text-foreground/60">{t("Je ne travaille pas avec tout le monde.", "I don't work with everyone.")}</p>
+                </div>
+              </div>
+
+            </div>
           </AnimatedSection>
 
           {/* New Evidence Section */}
