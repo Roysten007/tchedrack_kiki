@@ -2,7 +2,8 @@ import { useLang } from '@/context/LanguageContext';
 import AnimatedSection from '@/components/AnimatedSection';
 import CounterNumber from '@/components/CounterNumber';
 import { motion } from 'framer-motion';
-import { Instagram, Mail, MessageCircle } from 'lucide-react';
+import { useState, useCallback, useEffect } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import {
   Accordion,
   AccordionContent,
@@ -12,6 +13,19 @@ import {
 
 const Index = () => {
   const { t, lang } = useLang();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+  }, [emblaApi, onSelect]);
 
   const stats = [
     { value: 4, prefix: '×', suffix: '', labelFr: 'Contacts qualifiés · segment luxe', labelEn: 'Qualified contacts · luxury segment' },
@@ -207,17 +221,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ===== SOCIAL PROOF ===== */}
-      <section className="py-20 bg-card/30 border-y border-white/5">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          {stats.map((stat, i) => (
-            <AnimatedSection key={i} delay={i * 0.1} className="text-center flex flex-col gap-2">
-              <CounterNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} className="text-3xl md:text-4xl" />
-              <span className="text-foreground/60 font-body text-sm">{t(stat.labelFr, stat.labelEn)}</span>
-            </AnimatedSection>
-          ))}
-        </div>
-      </section>
+
 
       {/* ===== THE PROBLEM ===== */}
       <section className="py-24 px-6">
@@ -241,15 +245,15 @@ const Index = () => {
       </section>
 
       {/* ===== CASE STUDIES ===== */}
-      <section id="projets" className="py-24 px-6">
+      <section id="projets" className="py-32 px-6">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <h2 className="font-display text-4xl md:text-5xl text-foreground mt-4 leading-tight">
               {t('Des mots. Des résultats. Des preuves.', 'Words. Results. Proof.')}
             </h2>
-            <p className="text-foreground/60 font-body mt-4 text-lg">{t('Pas de témoignages. Des chiffres.', 'No testimonials. Numbers.')}</p>
+            <p className="text-foreground/70 font-body mt-6 text-xl">{t('Pas de témoignages. Des chiffres.', 'No testimonials. Numbers.')}</p>
           </AnimatedSection>
-          <div className="mt-20 flex flex-col gap-24">
+          <div className="mt-24 flex flex-col gap-32">
             {caseStudies.map((cs, idx) => (
               <AnimatedSection key={idx}>
                 <div>
@@ -264,7 +268,7 @@ const Index = () => {
                           {step.type === 'insight' ? (
                             <p className="font-display italic text-primary text-lg mt-1">"{t(step.fr, step.en)}"</p>
                           ) : (
-                            <p className="text-foreground/80 font-body mt-1">{t(step.fr, step.en)}</p>
+                            <p className="text-foreground/80 font-body mt-2 text-lg">{t(step.fr, step.en)}</p>
                           )}
                         </AnimatedSection>
                       );
@@ -278,20 +282,26 @@ const Index = () => {
       </section>
 
       {/* ===== ABOUT ===== */}
-      <section id="a-propos" className="py-24 px-6">
+      <section id="a-propos" className="py-32 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col items-center gap-12 mb-24 max-w-2xl mx-auto text-center">
+          <div className="flex flex-col items-center gap-16 mb-32 max-w-3xl mx-auto text-center">
             <AnimatedSection>
               <div className="w-72 h-96 bg-[#111111] rounded-3xl overflow-hidden relative mx-auto premium-card group">
-                <img src="/portrait.jpg" alt="KIKI Tchédrak" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" loading="lazy" />
+                <img 
+                  src="/portrait.jpg" 
+                  alt="KIKI Tchédrak" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-110 saturate-[1.1] contrast-[1.15] sharpness-high" 
+                  style={{ imageRendering: 'auto', filter: 'contrast(115%) brightness(110%) blur(0px)' }}
+                  loading="lazy" 
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               </div>
             </AnimatedSection>
             <AnimatedSection delay={0.1}>
-              <blockquote className="font-display italic text-2xl md:text-3xl text-foreground leading-snug">
+              <blockquote className="font-display italic text-3xl md:text-4xl text-foreground leading-snug">
                 {t("Je ne suis pas agent immobilier. Je suis celui qui fait sonner le téléphone des agents immobiliers.", "I'm not a real estate agent. I'm the one who makes real estate agents' phones ring.")}
               </blockquote>
-              <p className="text-foreground/60 font-body mt-6 leading-relaxed">
+              <p className="text-foreground/70 font-body mt-8 text-xl leading-relaxed">
                 {t("KIKI Tchédrak — Copywriter immobilier. Spécialiste en réécriture d'annonces, prospection email et conversion digitale pour les conseillers indépendants.", "KIKI Tchédrak — Real estate copywriter. Specialist in listing rewrites, email prospecting, and digital conversion for independent advisors.")}
               </p>
             </AnimatedSection>
@@ -314,54 +324,51 @@ const Index = () => {
               <p className="font-sans-body text-foreground/60">{t("Pas d'opinions. Des données.", "No opinions. Data.")}</p>
             </AnimatedSection>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {sectorEvidence.map((s, i) => (
-                <AnimatedSection key={i} delay={i * 0.15}>
-                  <div className="bg-[#111111] border-t-2 border-primary p-8 md:p-10 rounded-2xl h-full flex flex-col hover:translate-y-[-4px] transition-transform duration-300">
-                    <div className="mb-6">
-                      <CounterNumber 
-                        value={s.value} 
-                        prefix={s.prefix} 
-                        suffix={s.suffix} 
-                        className="leading-none"
-                        style={{ fontSize: 'clamp(36px, 10vw, 56px)' }}
-                      />
-                    </div>
-                    
-                    <p className="font-sans-body text-foreground font-medium text-lg leading-tight mb-2">
-                      {t(s.labelFr, s.labelEn)}
-                    </p>
-
-                    <span className="font-mono text-[10px] text-primary/50 uppercase tracking-wider mb-6">
-                      {s.source}
-                    </span>
-
-                    {/* Secondary Data Points */}
-                    {s.secondaryFr && (
-                      <p className="font-sans-body text-sm text-foreground/60 mb-6">
-                        {t(s.secondaryFr, s.secondaryEn)}
-                      </p>
-                    )}
-
-                    {s.pointsFr && (
-                      <div className="space-y-2 mb-6">
-                        {(lang === 'fr' ? s.pointsFr : s.pointsEn).map((point, pi) => (
-                          <div key={pi} className="flex gap-2 items-start text-sm text-foreground/60">
-                            <span className="text-primary">—</span>
-                            <p>{point}</p>
+            <div className="relative group">
+              <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
+                <div className="flex">
+                  {sectorEvidence.map((s, i) => (
+                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_50%] pl-6 first:pl-0">
+                      <AnimatedSection delay={i * 0.1}>
+                        <div className="bg-[#111111] border-t-2 border-primary p-8 md:p-10 rounded-2xl h-full flex flex-col hover:translate-y-[-4px] transition-transform duration-300">
+                          <div className="mb-6">
+                            <CounterNumber 
+                              value={s.value} 
+                              prefix={s.prefix} 
+                              suffix={s.suffix} 
+                              className="leading-none text-primary"
+                              style={{ fontSize: 'clamp(38px, 9vw, 54px)' }}
+                            />
                           </div>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="mt-auto pt-6 border-t border-white/5">
-                      <p className="font-serif-display italic text-foreground/70 text-lg leading-relaxed">
-                        "{t(s.interpretationFr, s.interpretationEn)}"
-                      </p>
+                          
+                          <p className="font-sans-body text-foreground font-medium text-xl md:text-2xl leading-tight mb-2">
+                            {t(s.labelFr, s.labelEn)}
+                          </p>
+                          <span className="font-mono text-[10px] text-primary/50 uppercase tracking-wider mb-6">
+                            {s.source}
+                          </span>
+                          <div className="mt-auto pt-6 border-t border-white/5">
+                            <p className="font-serif-display italic text-foreground/70 text-xl leading-relaxed">
+                              "{t(s.interpretationFr, s.interpretationEn)}"
+                            </p>
+                          </div>
+                        </div>
+                      </AnimatedSection>
                     </div>
-                  </div>
-                </AnimatedSection>
-              ))}
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-center gap-3 mt-12">
+                {sectorEvidence.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => emblaApi?.scrollTo(i)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      selectedIndex === i ? 'bg-primary w-10' : 'bg-white/10'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
             <AnimatedSection delay={0.6} className="mt-16 text-center">
@@ -374,7 +381,7 @@ const Index = () => {
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section id="services" className="py-24 px-6">
+      <section id="services" className="py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
             <h2 className="font-display text-4xl md:text-5xl text-foreground mt-4 leading-tight">

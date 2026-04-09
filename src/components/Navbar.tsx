@@ -62,16 +62,16 @@ const Navbar = () => {
 
         {/* Right side */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1 text-xs font-mono">
+          <div className="hidden sm:flex items-center gap-1 text-xs font-mono">
             <button onClick={() => setLang('fr')} data-hoverable className={`px-1.5 py-0.5 transition-colors nav-reset ${lang === 'fr' ? 'text-primary border-b border-primary' : 'text-foreground/40 hover:text-foreground/70'}`}>FR</button>
             <span className="text-foreground/20">|</span>
             <button onClick={() => setLang('en')} data-hoverable className={`px-1.5 py-0.5 transition-colors nav-reset ${lang === 'en' ? 'text-primary border-b border-primary' : 'text-foreground/40 hover:text-foreground/70'}`}>EN</button>
           </div>
-          <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" data-hoverable className="hidden md:block premium-btn !text-xs !py-2 !px-4 hover:bg-primary-foreground transition-all rounded-xl">
+          <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" data-hoverable className="hidden lg:block premium-btn !text-xs !py-2 !px-4 hover:bg-primary-foreground transition-all rounded-xl">
             {t("Auditer mon annonce", "Audit my listing")}
           </a>
           <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden text-foreground nav-reset" data-hoverable>
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
@@ -81,9 +81,9 @@ const Navbar = () => {
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border overflow-hidden">
             <div className="px-6 py-6 flex flex-col gap-4">
               {navItems.map((item) => (
-                <button 
-                  key={item.id} 
-                  onClick={() => scrollTo(item.id)} 
+                <button
+                  key={item.id}
+                  onClick={() => scrollTo(item.id)}
                   className="text-2xl font-display text-foreground/80 text-left py-4 border-b border-white/5 w-full active:text-primary transition-colors nav-reset"
                 >
                   <div className="flex justify-between items-center">
