@@ -220,7 +220,7 @@ const Index = () => {
       </section>
 
       {/* ===== THE PROBLEM ===== */}
-      <section className="py-12 px-6">
+      <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
 
           <div className="mt-12 flex flex-col gap-6">
@@ -241,7 +241,7 @@ const Index = () => {
       </section>
 
       {/* ===== CASE STUDIES ===== */}
-      <section id="projets" className="py-16 px-6">
+      <section id="projets" className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <h2 className="font-display text-4xl md:text-5xl text-foreground mt-4 leading-tight">
@@ -249,7 +249,7 @@ const Index = () => {
             </h2>
             <p className="text-foreground/60 font-body mt-4 text-lg">{t('Pas de témoignages. Des chiffres.', 'No testimonials. Numbers.')}</p>
           </AnimatedSection>
-          <div className="mt-12 flex flex-col gap-16">
+          <div className="mt-20 flex flex-col gap-24">
             {caseStudies.map((cs, idx) => (
               <AnimatedSection key={idx}>
                 <div>
@@ -278,9 +278,9 @@ const Index = () => {
       </section>
 
       {/* ===== ABOUT ===== */}
-      <section id="a-propos" className="py-16 px-6">
+      <section id="a-propos" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col items-center gap-8 mb-16 max-w-2xl mx-auto text-center">
+          <div className="flex flex-col items-center gap-12 mb-24 max-w-2xl mx-auto text-center">
             <AnimatedSection>
               <div className="w-72 h-96 bg-[#111111] rounded-3xl overflow-hidden relative mx-auto premium-card group">
                 <img src="/portrait.jpg" alt="KIKI Tchédrak" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" loading="lazy" />
@@ -374,7 +374,7 @@ const Index = () => {
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section id="services" className="py-16 px-6">
+      <section id="services" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
             <h2 className="font-display text-4xl md:text-5xl text-foreground mt-4 leading-tight">
@@ -405,7 +405,7 @@ const Index = () => {
               </AnimatedSection>
             ))}
           </div>
-          <AnimatedSection className="mt-16 text-center max-w-3xl mx-auto">
+          <AnimatedSection className="mt-24 text-center max-w-3xl mx-auto">
             <p className="font-display italic text-xl md:text-2xl text-foreground/90 leading-relaxed">
               {t("Mandataire IAD, Safti ou Optimhome. Entre 1 et 5 ans d'expérience. Tu publies. Tu prospectes. Mais ton téléphone ne sonne pas assez. C'est exactement là que j'interviens.", "IAD, Safti or Optimhome advisor. Between 1 and 5 years of experience. You post. You prospect. But your phone doesn't ring enough. That's exactly where I step in.")}
             </p>
@@ -414,7 +414,7 @@ const Index = () => {
       </section>
 
       {/* ===== FAQ ===== */}
-      <section id="faq" className="py-16 px-6 bg-[#0E0E0E]">
+      <section id="faq" className="py-24 px-6 bg-[#0E0E0E]">
         <div className="max-w-3xl mx-auto">
           <AnimatedSection className="text-center mb-16">
             <span className="font-mono text-primary text-xs uppercase tracking-[0.2em]">{t("STABILISER VOS DOUTES", "SETTLE YOUR DOUBTS")}</span>
@@ -457,7 +457,7 @@ const Index = () => {
       </section>
 
       {/* ===== CONTACT ===== */}
-      <section id="contact" className="py-16 px-6">
+      <section id="contact" className="py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection className="mb-12">
             <h2 className="font-display italic text-2xl md:text-5xl text-foreground leading-tight px-4">
@@ -469,7 +469,7 @@ const Index = () => {
               {t("Je te dis en 24h ce qui bloque — et comment le débloquer.", "I'll tell you in 24h what's blocking it — and how to fix it.")}
             </p>
           </AnimatedSection>
-          <AnimatedSection delay={0.2} className="mb-12">
+          <AnimatedSection delay={0.2} className="mb-16">
             <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" data-hoverable className="premium-btn w-full sm:w-auto">
               {t("Envoyer mon annonce sur LinkedIn", "Send my listing on LinkedIn")}
             </a>
