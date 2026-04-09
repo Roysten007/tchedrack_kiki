@@ -3,6 +3,12 @@ import AnimatedSection from '@/components/AnimatedSection';
 import CounterNumber from '@/components/CounterNumber';
 import { motion } from 'framer-motion';
 import { Instagram, Mail, MessageCircle } from 'lucide-react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Index = () => {
   const { t, lang } = useLang();
@@ -57,18 +63,55 @@ const Index = () => {
     insight: { label: { fr: 'INSIGHT', en: 'INSIGHT' }, color: 'bg-primary' },
   };
 
-  const aboutServices = [
-    { fr: "Réécriture d'annonces immobilières", en: "Real estate listing rewrite" },
-    { fr: "Emails de prospection vendeurs", en: "Seller prospecting emails" },
-    { fr: "Pages de capture", en: "Capture pages" },
-    { fr: "Scripts LinkedIn", en: "LinkedIn scripts" },
-  ];
 
-  const sectorStats = [
-    { stat: '12% vs 4,7%', labelFr: "Taux de conversion des annonces optimisées", labelEn: "Conversion rate: optimized vs. industry average", quoteFr: "Une annonce bien écrite ne double pas les résultats. Elle les triple.", quoteEn: "A well-written listing doesn't double results. It triples them." },
-    { stat: '15 sec', labelFr: "Pour convaincre ou perdre un lecteur", labelEn: "To convince or lose a reader", quoteFr: "Ton accroche est ton seul rendez-vous. Rate-la et c'est terminé.", quoteEn: "Your hook is your only appointment. Miss it and it's over." },
-    { stat: 'Top 3 ROI', labelFr: "Email immobilier tous secteurs confondus", labelEn: "Real estate email ROI — all sectors", quoteFr: "L'email n'est pas mort. Il dort chez ceux qui ne savent pas l'écrire.", quoteEn: "Email isn't dead. It's sleeping for those who can't write it." },
-    { stat: '×3,5', labelFr: "SEO immobilier vs publicité payante", labelEn: "Real estate SEO vs. paid ads", quoteFr: "Payer pour exister ou écrire pour durer. Les deux ne sont pas équivalents.", quoteEn: "Pay to exist or write to last. They're not the same." },
+
+  const sectorEvidence = [
+    {
+      value: 12,
+      prefix: "",
+      suffix: "% vs 4,7%",
+      labelFr: "Taux de conversion · annonces optimisées vs moyenne secteur",
+      labelEn: "Conversion rate · optimized listings vs. industry average",
+      source: "Google Ads Immobilier · Benchmark sectoriel",
+      interpretationFr: "Une annonce bien écrite ne double pas les résultats. Elle les triple. Les 7,3 points d'écart, c'est exactement là que j'opère.",
+      interpretationEn: "A well-written listing doesn't double results. It triples them. Those 7.3 points of difference — that's exactly where I operate."
+    },
+    {
+      value: 15,
+      prefix: "",
+      suffix: " sec",
+      labelFr: "Pour convaincre ou perdre définitivement un lecteur",
+      labelEn: "To convince — or permanently lose — a reader",
+      source: "National Association of Realtors · Étude comportementale",
+      secondaryFr: "60% des agents risquent de perdre des ventes en 2026 faute de communication adaptée.",
+      secondaryEn: "60% of agents risk losing sales in 2026 due to inadequate communication.",
+      interpretationFr: "Ton accroche est ton seul rendez-vous avec l'acheteur. Rate-la, et c'est terminé — peu importe la qualité du bien.",
+      interpretationEn: "Your hook is your only appointment with the buyer. Miss it, and it's over — regardless of the property's quality."
+    },
+    {
+      value: 3,
+      prefix: "Top ",
+      suffix: "",
+      labelFr: "ROI email · immobilier parmi les meilleurs secteurs",
+      labelEn: "Email ROI · real estate among top-performing sectors",
+      source: "Mailchimp Benchmarks · Secteur Immobilier 2024",
+      pointsFr: ["Taux d'ouverture moyen : 19,17%", "Taux de clic : 1,77%", "Taux de conversion : 1,4% à 2,6%"],
+      pointsEn: ["Average open rate: 19.17%", "Click-through rate: 1.77%", "Conversion rate: 1.4% to 2.6%"],
+      interpretationFr: "Je ne rédige pas juste des emails. Je dépasse ces benchmarks pour transformer votre base de données en mandats signés.",
+      interpretationEn: "I don't just write emails. I beat these benchmarks to turn your database into signed mandates."
+    },
+    {
+      value: 3.5,
+      prefix: "×",
+      suffix: "",
+      labelFr: "SEO immobilier convertit plus vite que la publicité payante",
+      labelEn: "Real estate SEO converts faster than paid ads",
+      source: "BrightEdge · Search vs Paid · Immobilier",
+      secondaryFr: "57% des visiteurs de sites immobiliers viennent d'une recherche active.",
+      secondaryEn: "57% of real estate website visitors come from active search.",
+      interpretationFr: "Payer pour exister ou écrire pour durer. Le texte est le seul moteur de cette visibilité — et il travaille sans budget publicitaire.",
+      interpretationEn: "Pay to exist or write to last. Copy is the only engine of this visibility — and it works without an ad budget."
+    }
   ];
 
   const serviceCards = [
@@ -84,19 +127,70 @@ const Index = () => {
     { icon: <MessageCircle size={20} className="text-primary" />, label: '+229 95 65 74 61', href: 'https://wa.me/22995657461' },
   ];
 
+  const faqData = [
+    {
+      qFr: "Tu es agent immobilier ?",
+      qEn: "Are you a real estate agent?",
+      aFr: "Non. Je suis copywriter spécialisé immobilier. Je ne vends pas de biens — j'écris les textes qui font vendre les tiens.",
+      aEn: "No. I'm a real estate copywriter. I don't sell properties — I write the words that sell yours."
+    },
+    {
+      qFr: "Comment tu peux améliorer mon annonce sans connaître le bien ?",
+      qEn: "How can you improve my listing without knowing the property?",
+      aFr: "Tu me transmets ton annonce actuelle + quelques infos clés sur le bien. Je fais le reste. Mon travail c'est de transformer ce que tu m'envoies — pas d'inventer ce qui n'existe pas.",
+      aEn: "You send me your current listing + a few key details about the property. I handle the rest. My job is to transform what you give me — not invent what isn't there."
+    },
+    {
+      qFr: "En combien de temps je reçois ma réécriture ?",
+      qEn: "How long before I receive my rewrite?",
+      aFr: "48h à 72h selon la complexité du bien. Luxe inclus.",
+      aEn: "48 to 72 hours depending on the property's complexity. Luxury included."
+    },
+    {
+      qFr: "Est-ce que ça marche vraiment pour le luxe ?",
+      qEn: "Does it really work for luxury properties?",
+      aFr: "Le luxe ne se vend pas avec les mêmes mots que le résidentiel classique. J'ai un segment dédié, un ton souverain, une approche différente. Les résultats Cannes parlent d'eux-mêmes.",
+      aEn: "Luxury isn't sold with the same words as standard residential. I have a dedicated segment, a sovereign tone, a different approach. The Cannes results speak for themselves."
+    },
+    {
+      qFr: "Et si les résultats ne sont pas au rendez-vous ?",
+      qEn: "What if the results aren't there?",
+      aFr: "Je ne garantis pas les visites — le marché reste le marché. Ce que je garantis : une annonce qui donne à ton bien toutes ses chances. Si le texte bloque, on le retravaille ensemble.",
+      aEn: "I don't guarantee visits — the market is the market. What I guarantee: a listing that gives your property every chance it deserves. If the copy isn't working, we rework it together."
+    },
+    {
+      qFr: "Tu travailles avec tous les réseaux de mandataires ?",
+      qEn: "Do you work with all agent networks?",
+      aFr: "IAD, Safti, Optimhome, indépendants — peu importe le réseau. Ce qui compte : tu publies déjà, tu prospectes, et tu veux que ton téléphone sonne davantage.",
+      aEn: "IAD, Safti, Optimhome, independents — the network doesn't matter. What counts: you're already publishing, already prospecting, and you want your phone to ring more."
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       {/* ===== HERO ===== */}
-      <section id="accueil" className="relative min-h-screen flex flex-col items-center justify-center px-6 noise-bg overflow-hidden">
+      <section id="accueil" className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0 select-none pointer-events-none">
+          <img 
+            src="/hero-bg.png" 
+            alt="Luxury Writing" 
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+          <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 noise-bg opacity-30" />
+        </div>
+
         <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
-          <AnimatedSection>
-            <div className="inline-block border border-primary/40 px-4 py-2 font-mono text-xs text-primary/80 uppercase tracking-widest">
-              + 1 an · 3 segments · Paris · Tours · Cannes
-            </div>
-          </AnimatedSection>
+
           <AnimatedSection delay={0.1}>
-            <h1 className="font-display italic font-semibold text-foreground leading-[1.1]" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}>
-              {t("Les mots qui font signer.", "Words that make them sign.")}
+            <h1 className="font-display italic font-semibold text-foreground leading-[1.2] px-4" style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)' }}>
+              {lang === 'fr' ? (
+                <>Les mots qui font <span className="text-primary">signer.</span></>
+              ) : (
+                <>Words that make them <span className="text-primary">sign.</span></>
+              )}
             </h1>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
@@ -105,20 +199,20 @@ const Index = () => {
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.3}>
-            <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" data-hoverable className="inline-block bg-primary text-primary-foreground px-8 py-4 font-mono text-sm uppercase tracking-wider hover:bg-gold-light transition-colors">
+            <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" data-hoverable className="premium-btn">
               {t("Envoie-moi ton annonce à auditer", "Send me your listing to audit")}
             </a>
           </AnimatedSection>
-          <div className="mt-12 scroll-indicator h-12 overflow-hidden" />
+
         </div>
       </section>
 
       {/* ===== SOCIAL PROOF ===== */}
-      <section className="bg-card py-16 px-6">
+      <section className="py-20 bg-card/30 border-y border-white/5">
         <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <AnimatedSection key={i} delay={i * 0.1} className="text-center flex flex-col gap-2">
-              <CounterNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+              <CounterNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} className="text-3xl md:text-4xl" />
               <span className="text-foreground/60 font-body text-sm">{t(stat.labelFr, stat.labelEn)}</span>
             </AnimatedSection>
           ))}
@@ -128,13 +222,11 @@ const Index = () => {
       {/* ===== THE PROBLEM ===== */}
       <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
-          <AnimatedSection>
-            <span className="font-mono text-xs text-primary uppercase tracking-widest">{t("LE PROBLÈME", "THE PROBLEM")}</span>
-          </AnimatedSection>
+
           <div className="mt-12 flex flex-col gap-6">
             {problems.map((p, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="bg-card border-l-2 border-destructive p-6 md:p-8">
+                <div className="bg-card border-l-2 border-destructive p-6 md:p-8 rounded-2xl">
                   <p className="font-display italic text-foreground/90 text-lg md:text-xl leading-relaxed">"{t(p.fr, p.en)}"</p>
                 </div>
               </AnimatedSection>
@@ -152,7 +244,6 @@ const Index = () => {
       <section id="projets" className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
-            <span className="font-mono text-xs text-primary uppercase tracking-widest">{t('ÉTUDES DE CAS', 'CASE STUDIES')}</span>
             <h2 className="font-display text-4xl md:text-5xl text-foreground mt-4 leading-tight">
               {t('Des mots. Des résultats. Des preuves.', 'Words. Results. Proof.')}
             </h2>
@@ -162,8 +253,7 @@ const Index = () => {
             {caseStudies.map((cs, idx) => (
               <AnimatedSection key={idx}>
                 <div>
-                  <span className="font-mono text-xs text-primary/60 uppercase tracking-widest">#{String(idx + 1).padStart(2, '0')}</span>
-                  <p className="font-mono text-xs text-foreground/50 uppercase tracking-wider mt-2">{t(cs.eyebrowFr, cs.eyebrowEn)}</p>
+
                   <div className="mt-8 relative pl-8 border-l border-primary/30">
                     {cs.steps.map((step, si) => {
                       const config = stepConfig[step.type];
@@ -190,9 +280,9 @@ const Index = () => {
       {/* ===== ABOUT ===== */}
       <section id="a-propos" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center mb-24">
+          <div className="flex flex-col items-center gap-12 mb-24 max-w-2xl mx-auto text-center">
             <AnimatedSection>
-              <div className="aspect-square bg-card rounded-sm overflow-hidden relative">
+              <div className="w-64 h-64 bg-card rounded-2xl overflow-hidden relative mx-auto">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5" />
                 <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 border border-primary/20 rotate-45" />
                 <div className="absolute top-1/3 left-1/3 w-1/3 h-1/3 border border-primary/10 rotate-12" />
@@ -209,37 +299,79 @@ const Index = () => {
             </AnimatedSection>
           </div>
 
-          <AnimatedSection className="mb-24">
-            <h3 className="font-display text-2xl text-foreground mb-8">{t("Ce que je fais", "What I do")}</h3>
-            <div className="flex flex-col gap-4">
-              {aboutServices.map((s, i) => (
-                <AnimatedSection key={i} delay={i * 0.1}>
-                  <div className="flex items-center gap-4 text-foreground/80 font-body text-lg">
-                    <span className="text-primary">—</span>{t(s.fr, s.en)}
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </AnimatedSection>
+
 
           <AnimatedSection className="mb-24 text-center">
             <p className="font-display italic text-2xl md:text-3xl text-foreground mb-4">{t("Je ne fais pas du joli. Je fais du rentable.", "I don't do pretty. I do profitable.")}</p>
             <p className="font-display italic text-2xl md:text-3xl text-foreground/70">{t("Je ne travaille pas avec tout le monde.", "I don't work with everyone.")}</p>
           </AnimatedSection>
 
-          <AnimatedSection>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {sectorStats.map((s, i) => (
-                <AnimatedSection key={i} delay={i * 0.1}>
-                  <div className="bg-card border-t-2 border-primary p-6">
-                    <span className="font-mono text-primary text-2xl font-bold">{s.stat}</span>
-                    <p className="text-foreground/60 font-body text-sm mt-2">{t(s.labelFr, s.labelEn)}</p>
-                    <p className="text-foreground/50 font-display italic text-sm mt-3 border-t border-border/30 pt-3">"{t(s.quoteFr, s.quoteEn)}"</p>
+          {/* New Evidence Section */}
+          <div className="mb-32">
+            <AnimatedSection className="text-center mb-16">
+              <span className="font-mono text-primary text-xs uppercase tracking-[0.2em]">{t("PREUVES SECTORIELLES", "SECTOR EVIDENCE")}</span>
+              <h2 className="font-montserrat text-4xl md:text-5xl text-foreground mt-4 mb-4">
+                {t("Ce que les chiffres disent. Ce que ça change pour toi.", "What the numbers say. What it changes for you.")}
+              </h2>
+              <p className="font-sans-body text-foreground/60">{t("Pas d'opinions. Des données.", "No opinions. Data.")}</p>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {sectorEvidence.map((s, i) => (
+                <AnimatedSection key={i} delay={i * 0.15}>
+                  <div className="bg-[#111111] border-t-2 border-primary p-8 md:p-10 rounded-2xl h-full flex flex-col hover:translate-y-[-4px] transition-transform duration-300">
+                    <div className="mb-6">
+                      <CounterNumber 
+                        value={s.value} 
+                        prefix={s.prefix} 
+                        suffix={s.suffix} 
+                        className="leading-none"
+                        style={{ fontSize: 'clamp(36px, 10vw, 56px)' }}
+                      />
+                    </div>
+                    
+                    <p className="font-sans-body text-foreground font-medium text-lg leading-tight mb-2">
+                      {t(s.labelFr, s.labelEn)}
+                    </p>
+
+                    <span className="font-mono text-[10px] text-primary/50 uppercase tracking-wider mb-6">
+                      {s.source}
+                    </span>
+
+                    {/* Secondary Data Points */}
+                    {s.secondaryFr && (
+                      <p className="font-sans-body text-sm text-foreground/60 mb-6">
+                        {t(s.secondaryFr, s.secondaryEn)}
+                      </p>
+                    )}
+
+                    {s.pointsFr && (
+                      <div className="space-y-2 mb-6">
+                        {(lang === 'fr' ? s.pointsFr : s.pointsEn).map((point, pi) => (
+                          <div key={pi} className="flex gap-2 items-start text-sm text-foreground/60">
+                            <span className="text-primary">—</span>
+                            <p>{point}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="mt-auto pt-6 border-t border-white/5">
+                      <p className="font-serif-display italic text-foreground/70 text-lg leading-relaxed">
+                        "{t(s.interpretationFr, s.interpretationEn)}"
+                      </p>
+                    </div>
                   </div>
                 </AnimatedSection>
               ))}
             </div>
-          </AnimatedSection>
+
+            <AnimatedSection delay={0.6} className="mt-16 text-center">
+              <p className="font-serif-display italic text-xl md:text-2xl text-primary max-w-3xl mx-auto leading-relaxed">
+                {t("Le copywriting immobilier n'est pas une dépense. C'est un levier de performance mesurable.", "Real estate copywriting isn't an expense. It's a measurable performance lever.")}
+              </p>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
@@ -247,7 +379,6 @@ const Index = () => {
       <section id="services" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
-            <span className="font-mono text-xs text-primary uppercase tracking-widest">SERVICES</span>
             <h2 className="font-display text-4xl md:text-5xl text-foreground mt-4 leading-tight">
               {t("Ce que je fais concrètement pour toi.", "What I concretely do for you.")}
             </h2>
@@ -255,7 +386,7 @@ const Index = () => {
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
             {serviceCards.map((s, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <motion.div whileHover={{ y: -4 }} className="bg-card p-8 h-full border-l-2 border-transparent hover:border-primary transition-colors group relative overflow-hidden">
+                <motion.div whileHover={{ y: -4 }} className="bg-card p-8 h-full border-l-2 border-transparent hover:border-primary transition-colors group relative overflow-hidden rounded-2xl">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-primary/5 to-transparent pointer-events-none" />
                   <h3 className="font-display text-xl text-foreground mb-6 relative z-10">{t(s.titleFr, s.titleEn)}</h3>
                   <div className="space-y-4 relative z-10">
@@ -284,10 +415,37 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ===== FAQ ===== */}
+      <section id="faq" className="py-24 px-6 bg-[#0E0E0E]">
+        <div className="max-w-3xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <span className="font-mono text-primary text-xs uppercase tracking-[0.2em]">{t("STABILISER VOS DOUTES", "SETTLE YOUR DOUBTS")}</span>
+            <h2 className="font-display text-4xl md:text-5xl text-foreground mt-4 mb-4">
+              {t("Questions Fréquentes", "Frequently Asked Questions")}
+            </h2>
+          </AnimatedSection>
+          
+          <AnimatedSection>
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {faqData.map((item, i) => (
+                <AccordionItem key={i} value={`item-${i}`} className="bg-card px-6 rounded-xl border-none premium-card">
+                  <AccordionTrigger className="text-left font-sans-body text-lg hover:no-underline hover:text-primary transition-colors py-6">
+                    {t(item.qFr, item.qEn)}
+                  </AccordionTrigger>
+                  <AccordionContent className="font-sans-body text-foreground/60 text-base leading-relaxed pb-6">
+                    {t(item.aFr, item.aEn)}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* ===== CONTACT ===== */}
       <section id="contact" className="py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <AnimatedSection className="mb-8">
+          <AnimatedSection className="mb-12">
             <h2 className="font-display italic text-3xl md:text-5xl text-foreground leading-tight">
               {t("Tu as une annonce qui stagne ? Envoie-la moi.", "Got a listing that's stagnating? Send it to me.")}
             </h2>
@@ -298,15 +456,18 @@ const Index = () => {
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.2} className="mb-16">
-            <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" data-hoverable className="inline-block w-full sm:w-auto bg-primary text-primary-foreground px-10 py-5 font-mono text-sm uppercase tracking-wider hover:bg-gold-light transition-colors">
+            <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" data-hoverable className="premium-btn w-full sm:w-auto">
               {t("Envoyer mon annonce sur LinkedIn", "Send my listing on LinkedIn")}
             </a>
           </AnimatedSection>
           <AnimatedSection delay={0.3} className="mb-24">
-            <div className="flex flex-col gap-4 items-center">
+            <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-12 bg-card/50 p-8 rounded-3xl border border-white/5 premium-card">
               {channels.map((ch, i) => (
-                <a key={i} href={ch.href} target="_blank" rel="noopener noreferrer" data-hoverable className="flex items-center gap-3 text-foreground/70 font-body hover:text-primary transition-colors">
-                  {ch.icon}<span>{ch.label}</span>
+                <a key={i} href={ch.href} target="_blank" rel="noopener noreferrer" data-hoverable className="flex items-center gap-4 text-foreground/70 font-body hover:text-primary transition-all group">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/5 group-hover:bg-primary/10 group-hover:scale-110 transition-all border border-primary/20">
+                    {ch.icon}
+                  </div>
+                  <span className="text-lg font-body">{ch.label}</span>
                 </a>
               ))}
             </div>
