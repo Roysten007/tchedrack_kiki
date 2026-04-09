@@ -283,7 +283,7 @@ const Index = () => {
           <div className="flex flex-col items-center gap-12 mb-24 max-w-2xl mx-auto text-center">
             <AnimatedSection>
               <div className="w-72 h-96 bg-[#111111] rounded-3xl overflow-hidden relative mx-auto premium-card group">
-                <img src="/portrait.png" alt="KIKI Tchédrak" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" loading="lazy" />
+                <img src="/portrait.jpg" alt="KIKI Tchédrak" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               </div>
             </AnimatedSection>
