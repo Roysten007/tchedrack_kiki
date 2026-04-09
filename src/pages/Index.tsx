@@ -29,7 +29,7 @@ const Index = () => {
 
     const autoplay = setInterval(() => {
       emblaApi.scrollNext();
-    }, 4000);
+    }, 3000);
 
     return () => clearInterval(autoplay);
   }, [emblaApi, onSelect]);
@@ -252,7 +252,7 @@ const Index = () => {
       </section>
 
       {/* ===== CASE STUDIES ===== */}
-      <section id="projets" className="py-32 px-6">
+      <section id="projets" className="pt-32 pb-8 px-6">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <h2 className="font-display text-4xl md:text-5xl text-foreground mt-4 leading-tight">
@@ -370,8 +370,8 @@ const Index = () => {
                   <button
                     key={i}
                     onClick={() => emblaApi?.scrollTo(i)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      selectedIndex === i ? 'bg-primary w-12' : 'bg-white/20 w-4'
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      selectedIndex === i ? 'bg-primary w-12' : 'bg-primary/20 w-3'
                     }`}
                   />
                 ))}
