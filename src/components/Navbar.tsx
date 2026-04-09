@@ -17,9 +17,22 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
     setMobileOpen(false);
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const offset = 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 150);
   };
 
   return (
@@ -68,8 +81,17 @@ const Navbar = () => {
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border overflow-hidden">
             <div className="px-6 py-6 flex flex-col gap-4">
               {navItems.map((item) => (
-                <button key={item.id} onClick={() => scrollTo(item.id)} className="text-lg font-display text-foreground/70 text-left">
-                  {lang === 'fr' ? item.fr : item.en}
+                <button 
+                  key={item.id} 
+                  onClick={() => scrollTo(item.id)} 
+                  className="text-2xl font-display text-foreground/80 text-left py-4 border-b border-white/5 w-full active:text-primary transition-colors nav-reset"
+                >
+                  <div className="flex justify-between items-center">
+                    <span>{lang === 'fr' ? item.fr : item.en}</span>
+                    <span className="text-[10px] text-primary/40 font-mono italic">
+                      {lang === 'fr' ? item.en : item.fr}
+                    </span>
+                  </div>
                 </button>
               ))}
               <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" className="premium-btn w-full mt-2">

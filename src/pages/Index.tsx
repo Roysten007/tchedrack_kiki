@@ -185,7 +185,7 @@ const Index = () => {
         <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
 
           <AnimatedSection delay={0.1}>
-            <h1 className="font-display italic font-semibold text-foreground leading-[1.2] px-4" style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)' }}>
+            <h1 className="font-display italic font-semibold text-foreground leading-[1.2] px-4" style={{ fontSize: 'clamp(2rem, 8vw, 6rem)' }}>
               {lang === 'fr' ? (
                 <>Les mots qui font <span className="text-primary">signer.</span></>
               ) : (
@@ -282,11 +282,9 @@ const Index = () => {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col items-center gap-12 mb-24 max-w-2xl mx-auto text-center">
             <AnimatedSection>
-              <div className="w-64 h-64 bg-card rounded-2xl overflow-hidden relative mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5" />
-                <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 border border-primary/20 rotate-45" />
-                <div className="absolute top-1/3 left-1/3 w-1/3 h-1/3 border border-primary/10 rotate-12" />
-                <div className="absolute bottom-1/4 right-1/4 w-16 h-16 bg-primary/5 rounded-full blur-xl" />
+              <div className="w-72 h-96 bg-[#111111] rounded-3xl overflow-hidden relative mx-auto premium-card group">
+                <img src="/portrait.png" alt="KIKI Tchédrak" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               </div>
             </AnimatedSection>
             <AnimatedSection delay={0.1}>
@@ -425,20 +423,36 @@ const Index = () => {
             </h2>
           </AnimatedSection>
           
-          <AnimatedSection>
-            <Accordion type="single" collapsible className="w-full space-y-4">
-              {faqData.map((item, i) => (
-                <AccordionItem key={i} value={`item-${i}`} className="bg-card px-6 rounded-xl border-none premium-card">
-                  <AccordionTrigger className="text-left font-sans-body text-lg hover:no-underline hover:text-primary transition-colors py-6">
-                    {t(item.qFr, item.qEn)}
-                  </AccordionTrigger>
-                  <AccordionContent className="font-sans-body text-foreground/60 text-base leading-relaxed pb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
+            {faqData.map((item, i) => (
+              <AnimatedSection key={i} delay={i * 0.05} className="h-full">
+                <div 
+                  className="bg-[#111111] border border-white/5 rounded-2xl overflow-hidden premium-card group cursor-pointer h-full flex flex-col"
+                  onClick={(e) => {
+                    const content = e.currentTarget.querySelector('.faq-content');
+                    const icon = e.currentTarget.querySelector('.faq-icon');
+                    if (content) content.classList.toggle('hidden');
+                    if (icon) icon.classList.toggle('rotate-45');
+                  }}
+                >
+                  <div className="p-6 flex justify-between items-center bg-[#0D0D0D] group-hover:bg-[#151515] transition-colors flex-1">
+                    <h3 className="font-display font-bold text-white text-base md:text-lg pr-4">
+                      {t(item.qFr, item.qEn)}
+                    </h3>
+                    <div className="faq-icon text-primary transition-transform duration-300 shrink-0">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="faq-content hidden p-6 pt-0 bg-[#0D0D0D] font-sans-body text-foreground/70 text-sm leading-relaxed border-t border-white/5">
                     {t(item.aFr, item.aEn)}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </AnimatedSection>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -461,13 +475,12 @@ const Index = () => {
             </a>
           </AnimatedSection>
           <AnimatedSection delay={0.3} className="mb-24">
-            <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-12 bg-card/50 p-8 rounded-3xl border border-white/5 premium-card">
+            <div className="flex flex-row gap-12 justify-center items-center mt-12 px-4 flex-wrap">
               {channels.map((ch, i) => (
-                <a key={i} href={ch.href} target="_blank" rel="noopener noreferrer" data-hoverable className="flex items-center gap-4 text-foreground/70 font-body hover:text-primary transition-all group">
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/5 group-hover:bg-primary/10 group-hover:scale-110 transition-all border border-primary/20">
+                <a key={i} href={ch.href} title={ch.label} target="_blank" rel="noopener noreferrer" data-hoverable className="transition-all hover:scale-125">
+                  <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#111111] border border-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-500 premium-card">
                     {ch.icon}
                   </div>
-                  <span className="text-lg font-body">{ch.label}</span>
                 </a>
               ))}
             </div>
