@@ -313,42 +313,42 @@ const Index = () => {
             <span className="font-mono text-primary text-xs uppercase tracking-[0.3em]">{t("À PROPOS", "ABOUT")}</span>
           </AnimatedSection>
 
-          <div className="flex flex-col md:flex-row items-stretch gap-12 md:gap-24">
+          <AnimatedSection>
+            <div className="flex flex-col md:flex-row items-stretch bg-[#0D0D0D] border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+              
+              {/* Text — Left */}
+              <div className="flex-1 flex flex-col justify-center gap-10 p-8 md:p-16 text-left">
+                <div className="flex flex-col gap-6">
+                  <blockquote className="font-display italic font-semibold text-foreground leading-tight" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}>
+                    {t("Je ne suis pas agent immobilier.", "I'm not a real estate agent.")}<br/>
+                    <span className="text-gradient-gold">{t("Je suis celui qui fait sonner le téléphone des agents immobiliers.", "I'm the one who makes real estate agents' phones ring.")}</span>
+                  </blockquote>
 
-            {/* Image — Left */}
-            <AnimatedSection delay={0.1} className="w-full md:w-[45%] flex-shrink-0">
-              <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl" style={{ height: 'clamp(400px, 75vh, 700px)' }}>
+                  <p className="text-foreground/60 font-body text-lg leading-relaxed max-w-xl">
+                    {t("Copywriter immobilier spécialisé en réécriture d'annonces, prospection email et conversion digitale pour les conseillers indépendants. Je transforme vos textes en leviers d'acquisition massifs.", "Real estate copywriter specializing in listing rewrites, email prospecting, and digital conversion. I turn your copy into massive acquisition levers for independent advisors.")}
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-3 pt-8 border-t border-white/5">
+                  <p className="font-display italic text-foreground text-xl md:text-2xl">{t("Je ne fais pas du joli. Je fais du rentable.", "I don't do pretty. I do profitable.")}</p>
+                  <p className="font-display italic text-foreground/50 text-xl md:text-2xl">{t("Je ne travaille pas avec tout le monde.", "I don't work with everyone.")}</p>
+                </div>
+              </div>
+
+              {/* Image — Right */}
+              <div className="w-full md:w-[45%] flex-shrink-0 relative group min-h-[400px] md:min-h-auto">
                 <img
                   src="/portrait.jpg"
                   alt="KIKI Tchédrak"
-                  className="w-full h-full object-cover object-top"
+                  className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700"
                   style={{ filter: 'contrast(110%) brightness(105%)' }}
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-background/20 via-transparent to-transparent" />
-              </div>
-            </AnimatedSection>
-
-            {/* Text — Right */}
-            <AnimatedSection delay={0.2} className="flex-1 flex flex-col justify-center gap-10 py-4 text-left">
-              <div className="flex flex-col gap-6">
-                <blockquote className="font-display italic font-semibold text-foreground leading-tight" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)' }}>
-                  {t("Je ne suis pas agent immobilier.", "I'm not a real estate agent.")}<br/>
-                  <span className="text-gradient-gold">{t("Je suis celui qui fait sonner le téléphone des agents immobiliers.", "I'm the one who makes real estate agents' phones ring.")}</span>
-                </blockquote>
-
-                <p className="text-foreground/60 font-body text-lg md:text-xl leading-relaxed max-w-xl">
-                  {t("Copywriter immobilier spécialisé en réécriture d'annonces, prospection email et conversion digitale pour les conseillers indépendants. Je transforme vos textes en leviers d'acquisition massifs.", "Real estate copywriter specializing in listing rewrites, email prospecting, and digital conversion. I turn your copy into massive acquisition levers for independent advisors.")}
-                </p>
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0D0D0D]/80 via-[#0D0D0D]/20 to-transparent md:from-[#0D0D0D] md:via-transparent md:to-transparent" />
               </div>
 
-              <div className="flex flex-col gap-4 pt-10 border-t border-white/5">
-                <p className="font-display italic text-foreground text-2xl md:text-3xl">{t("Je ne fais pas du joli. Je fais du rentable.", "I don't do pretty. I do profitable.")}</p>
-                <p className="font-display italic text-foreground/50 text-2xl md:text-3xl">{t("Je ne travaille pas avec tout le monde.", "I don't work with everyone.")}</p>
-              </div>
-            </AnimatedSection>
-
-          </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
