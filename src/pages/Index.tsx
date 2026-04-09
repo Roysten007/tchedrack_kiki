@@ -308,24 +308,30 @@ const Index = () => {
       {/* ===== ABOUT ===== */}
       <section id="a-propos" className="py-32 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col items-center gap-16 mb-32 max-w-3xl mx-auto text-center">
-            <AnimatedSection>
-              <div className="w-72 h-96 bg-[#111111] rounded-3xl overflow-hidden relative mx-auto premium-card group">
+          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16 mb-20">
+            {/* Photo — Left */}
+            <AnimatedSection className="flex-shrink-0 mx-auto md:mx-0">
+              <div className="w-72 h-96 bg-[#111111] rounded-3xl overflow-hidden relative premium-card group">
                 <img 
                   src="/portrait.jpg" 
                   alt="KIKI Tchédrak" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 brightness-110 saturate-[1.1] contrast-[1.15] sharpness-high" 
-                  style={{ imageRendering: 'auto', filter: 'contrast(115%) brightness(110%) blur(0px)' }}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" 
+                  style={{ filter: 'contrast(112%) brightness(108%)' }}
                   loading="lazy" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               </div>
             </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <blockquote className="font-display italic text-3xl md:text-4xl text-foreground leading-snug">
-                {t("Je ne suis pas agent immobilier. Je suis celui qui fait sonner le téléphone des agents immobiliers.", "I'm not a real estate agent. I'm the one who makes real estate agents' phones ring.")}
+
+            {/* Text — Right */}
+            <AnimatedSection delay={0.15} className="text-left">
+              <span className="font-mono text-primary text-[10px] uppercase tracking-[0.25em] mb-4 block">
+                {t('À Propos', 'About')}
+              </span>
+              <blockquote className="font-serif-display italic text-2xl md:text-3xl lg:text-4xl text-foreground leading-snug mb-6">
+                "{t("Je ne suis pas agent immobilier. Je suis celui qui fait sonner le téléphone des agents immobiliers.", "I'm not a real estate agent. I'm the one who makes real estate agents' phones ring.")}"
               </blockquote>
-              <p className="text-foreground/70 font-body mt-8 text-xl leading-relaxed">
+              <p className="text-foreground/60 font-body text-base md:text-lg leading-relaxed">
                 {t("KIKI Tchédrak — Copywriter immobilier. Spécialiste en réécriture d'annonces, prospection email et conversion digitale pour les conseillers indépendants.", "KIKI Tchédrak — Real estate copywriter. Specialist in listing rewrites, email prospecting, and digital conversion for independent advisors.")}
               </p>
             </AnimatedSection>
