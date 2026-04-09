@@ -196,33 +196,50 @@ const Index = () => {
           <img 
             src="/hero-bg.png" 
             alt="Luxury Writing" 
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-25"
+            loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
-          <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px]" />
-          <div className="absolute inset-0 noise-bg opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/30 to-background" />
+          <div className="absolute inset-0 noise-bg" />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
+        <div className="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center gap-6 md:gap-10">
+
+          <AnimatedSection delay={0}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="font-mono text-primary text-[10px] uppercase tracking-[0.25em]">
+                {t('Copywriter Immobilier · Spécialiste Luxe', 'Real Estate Copywriter · Luxury Specialist')}
+              </span>
+            </div>
+          </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            <h1 className="font-display italic font-semibold text-foreground leading-[1.2] px-4" style={{ fontSize: 'clamp(2rem, 8vw, 6rem)' }}>
+            <h1 className="font-display italic font-semibold text-foreground leading-[1.15] px-2" style={{ fontSize: 'clamp(2.2rem, 7vw, 5.5rem)' }}>
               {lang === 'fr' ? (
-                <>Les mots qui font <span className="text-primary">signer.</span></>
+                <>Les mots qui font <span className="text-gradient-gold">signer.</span></>
               ) : (
-                <>Words that make them <span className="text-primary">sign.</span></>
+                <>Words that make them <span className="text-gradient-gold">sign.</span></>
               )}
             </h1>
           </AnimatedSection>
+
           <AnimatedSection delay={0.2}>
-            <p className="text-foreground/70 font-body text-lg md:text-xl max-w-2xl leading-relaxed">
+            <p className="text-foreground/65 font-body text-base md:text-lg max-w-xl leading-relaxed">
               {t("J'aide les conseillers immobiliers à transformer leurs annonces en machines à visites — sans changer le bien, sans baisser le prix.", "I help real estate advisors turn their listings into visit-generating machines — without changing the property, without dropping the price.")}
             </p>
           </AnimatedSection>
+
           <AnimatedSection delay={0.3}>
-            <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" data-hoverable className="premium-btn">
+            <a href="https://linkedin.com/in/kikitchedrak" target="_blank" rel="noopener noreferrer" data-hoverable className="premium-btn animate-gold-pulse">
               {t("Envoie-moi ton annonce à auditer", "Send me your listing to audit")}
             </a>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.5} className="mt-4">
+            <div className="flex flex-col items-center gap-2 text-foreground/30">
+              <div className="scroll-indicator" />
+            </div>
           </AnimatedSection>
 
         </div>
@@ -231,20 +248,20 @@ const Index = () => {
 
 
       {/* ===== THE PROBLEM ===== */}
-      <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-
-          <div className="mt-12 flex flex-col gap-6">
+      <section className="py-16 px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex flex-col gap-4">
             {problems.map((p, i) => (
-              <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="bg-card border-l-2 border-destructive p-6 md:p-8 rounded-2xl">
-                  <p className="font-display italic text-foreground/90 text-lg md:text-xl leading-relaxed">"{t(p.fr, p.en)}"</p>
+              <AnimatedSection key={i} delay={i * 0.08}>
+                <div className="group flex gap-4 items-start bg-[#0E0E0E] border border-white/5 p-5 md:p-7 rounded-2xl hover:border-red-900/40 transition-colors">
+                  <span className="text-red-700/70 mt-1 text-lg flex-shrink-0">✕</span>
+                  <p className="font-body text-foreground/80 text-base md:text-lg leading-relaxed">{t(p.fr, p.en)}</p>
                 </div>
               </AnimatedSection>
             ))}
           </div>
-          <AnimatedSection delay={0.4} className="mt-12 text-center">
-            <p className="font-display italic text-primary text-2xl md:text-3xl font-semibold">
+          <AnimatedSection delay={0.35} className="mt-10 text-center">
+            <p className="font-serif-display italic text-primary text-2xl md:text-3xl leading-snug">
               {t("Le problème n'est pas le bien. C'est le texte.", "The problem isn't the property. It's the copy.")}
             </p>
           </AnimatedSection>
@@ -331,48 +348,49 @@ const Index = () => {
               <p className="font-sans-body text-foreground/60">{t("Pas d'opinions. Des données.", "No opinions. Data.")}</p>
             </AnimatedSection>
 
-            <div className="relative group">
-              <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-                <div className="flex items-stretch">
+            <div className="relative">
+              <div className="overflow-hidden rounded-2xl" ref={emblaRef}>
+                <div className="flex">
                   {sectorEvidence.map((s, i) => (
-                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_48%] lg:flex-[0_0_32%] min-w-0 mx-3">
-                      <AnimatedSection delay={i * 0.1} className="h-full">
-                        <div className="bg-[#111111] border-t-2 border-primary p-8 md:p-10 rounded-2xl h-full min-h-[420px] flex flex-col hover:translate-y-[-4px] transition-transform duration-300 shadow-xl">
-                          <div className="mb-6">
-                            <CounterNumber 
-                              value={s.value} 
-                              prefix={s.prefix} 
-                              suffix={s.suffix} 
-                              className="leading-none text-primary"
-                              style={{ fontSize: 'clamp(38px, 9vw, 54px)' }}
-                            />
-                          </div>
-                          
-                          <p className="font-sans-body text-foreground font-medium text-xl md:text-2xl leading-tight mb-4">
-                            {t(s.labelFr, s.labelEn)}
-                          </p>
-                          <span className="font-mono text-[10px] text-primary/50 uppercase tracking-wider mb-6">
-                            {s.source}
-                          </span>
-                          <div className="mt-auto pt-8 border-t border-white/5">
-                            <p className="font-serif-display italic text-foreground/70 text-2xl leading-relaxed">
-                              "{t(s.interpretationFr, s.interpretationEn)}"
-                            </p>
-                          </div>
+                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 px-3">
+                      <div className="bg-[#0D0D0D] border border-white/5 border-t-2 border-t-primary p-8 rounded-2xl flex flex-col" style={{ minHeight: '340px' }}>
+                        <div className="mb-5">
+                          <CounterNumber 
+                            value={s.value} 
+                            prefix={s.prefix} 
+                            suffix={s.suffix} 
+                            className="leading-none text-gradient-gold"
+                            style={{ fontSize: 'clamp(36px, 8vw, 52px)', fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
+                          />
                         </div>
-                      </AnimatedSection>
+                        <p className="font-body font-semibold text-foreground text-base md:text-lg leading-tight mb-3">
+                          {t(s.labelFr, s.labelEn)}
+                        </p>
+                        <span className="font-mono text-[9px] text-primary/40 uppercase tracking-widest mb-4">
+                          {s.source}
+                        </span>
+                        <div className="mt-auto pt-5 border-t border-white/5">
+                          <p className="font-serif-display italic text-foreground/60 text-lg leading-relaxed">
+                            "{t(s.interpretationFr, s.interpretationEn)}"
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="flex justify-center gap-3 mt-12">
+              {/* Navigation Dots */}
+              <div className="flex justify-center gap-2 mt-8">
                 {sectorEvidence.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => emblaApi?.scrollTo(i)}
-                    className={`h-1.5 rounded-full transition-all duration-300 nav-reset ${
-                      selectedIndex === i ? 'bg-primary w-10' : 'bg-primary/20 w-3'
-                    }`}
+                    className="nav-reset transition-all duration-300 rounded-full bg-primary/20"
+                    style={{
+                      width: selectedIndex === i ? '2.5rem' : '0.5rem',
+                      height: '0.375rem',
+                      backgroundColor: selectedIndex === i ? 'hsl(43 52% 54%)' : 'rgba(201,168,76,0.2)'
+                    }}
                   />
                 ))}
               </div>

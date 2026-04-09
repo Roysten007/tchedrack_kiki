@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Google Fonts ────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&family=Outfit:wght@300;400;500;600&display=swap');
+
 @layer base {
   :root {
     --background: 0 0% 4%;
@@ -20,104 +23,94 @@
     --accent-foreground: 0 0% 4%;
     --destructive: 0 60% 30%;
     --destructive-foreground: 36 30% 94%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
+    --border: 0 0% 13%;
+    --input: 0 0% 13%;
     --ring: 43 52% 54%;
     --radius: 1rem;
-
-    --gold: 43 52% 54%;
-    --gold-light: 40 60% 70%;
-    --off-white: 36 30% 94%;
-    --ink-black: 0 0% 4%;
-    --separator: 0 0% 10%;
-    --card-dark: 0 0% 7%;
-    --problem-red: 0 100% 27%;
+    --gold: #C9A84C;
+    --gold-rgb: 201, 168, 76;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Outfit', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, .font-display {
     font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.02em;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
-/* Noise texture overlay */
+/* ── Noise Background ────────────────────────────────────── */
 .noise-bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.05;
+  opacity: 0.04;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  filter: contrast(120%) brightness(100%);
   pointer-events: none;
   z-index: 1;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(0 0% 4%);
-}
+/* ── Custom Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: hsl(0 0% 4%); }
 ::-webkit-scrollbar-thumb {
-  background: hsl(43 52% 54% / 0.3);
-  border-radius: 3px;
+  background: hsl(43 52% 54% / 0.25);
+  border-radius: 2px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(43 52% 54% / 0.5);
-}
+::-webkit-scrollbar-thumb:hover { background: hsl(43 52% 54% / 0.45); }
 
-/* Gold cursor */
+/* ── Custom Cursor ───────────────────────────────────────── */
 .custom-cursor {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background: hsl(43 52% 54%);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  transition: width 0.2s ease, height 0.2s ease;
   transform: translate(-50%, -50%);
   mix-blend-mode: difference;
 }
 .custom-cursor.expanded {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background: transparent;
-  border: 2px solid hsl(43 52% 54%);
+  border: 1.5px solid hsl(43 52% 54%);
 }
 
-/* DM Mono utility */
-.font-mono-display {
-  font-family: 'DM Mono', monospace;
-}
+/* ── Font Utilities ──────────────────────────────────────── */
+.font-serif-display { font-family: 'Cormorant Garamond', serif; }
+.font-sans-body { font-family: 'Outfit', sans-serif; }
+.font-mono-display { font-family: 'DM Mono', monospace; }
 
-.font-serif-display {
-  font-family: 'Cormorant Garamond', serif;
-}
-
-.font-sans-body {
-  font-family: 'Outfit', sans-serif;
-}
-
-/* Gold glow pulse for CTA */
+/* ── Animations ──────────────────────────────────────────── */
 @keyframes gold-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 hsl(43 52% 54% / 0); }
-  50% { box-shadow: 0 0 20px 4px hsl(43 52% 54% / 0.15); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+  50% { box-shadow: 0 0 24px 4px rgba(201, 168, 76, 0.12); }
 }
-.animate-gold-pulse {
-  animation: gold-pulse 4s ease-in-out infinite;
-}
+.animate-gold-pulse { animation: gold-pulse 5s ease-in-out infinite; }
 
-/* Scroll indicator */
 @keyframes scroll-line {
   0% { transform: translateY(-100%); opacity: 0; }
   30% { opacity: 1; }
@@ -132,60 +125,72 @@
   animation: scroll-line 2s ease-in-out infinite;
 }
 
-/* Selection */
-/* Premium Button Style - Inspired by Uiverse */
+@keyframes rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ── Premium Button ──────────────────────────────────────── */
 .btn, .premium-btn, button:not(.nav-reset) {
-  font-size: 0.9rem;
-  padding: 0.8rem 2rem;
-  border: 1px solid rgba(201, 168, 76, 0.3);
+  font-size: 0.85rem;
+  padding: 0.85rem 2.25rem;
+  border: 1px solid rgba(201, 168, 76, 0.35);
   outline: none;
   border-radius: 0.75rem;
   cursor: pointer;
   text-transform: uppercase;
-  background-color: #0A0A0A;
-  color: #EAEAEA;
-  font-weight: 700;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5), 0px 0px 20px -5px rgba(201, 168, 76, 0.1);
+  background-color: transparent;
+  color: hsl(36 30% 94%);
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
-.btn:active, .premium-btn:active, button:not(.nav-reset):active {
-  transform: scale(0.96);
+.btn::before, .premium-btn::before, button:not(.nav-reset)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.btn:hover::before, .premium-btn:hover::before, button:not(.nav-reset):hover::before {
+  opacity: 1;
 }
 
 .btn:hover, .premium-btn:hover, button:not(.nav-reset):hover {
-  background: #C9A84C;
+  background: rgba(201, 168, 76, 0.9);
   color: #0A0A0A;
-  box-shadow: 0px 0px 30px rgba(201, 168, 76, 0.4);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.35), 0 4px 20px rgba(0, 0, 0, 0.5);
   border-color: transparent;
+  transform: translateY(-1px);
 }
 
-/* Premium Card (Frame) Style - Uiverse Inspired */
+.btn:active, .premium-btn:active, button:not(.nav-reset):active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ── Premium Card ────────────────────────────────────────── */
 .bg-card, .bg-\[\#111111\], .premium-card {
   position: relative;
-  background-color: #0A0A0A;
-  background-image: radial-gradient(
-      at 88% 40%,
-      rgba(20, 20, 20, 1) 0px,
-      transparent 85%
-    ),
-    radial-gradient(at 0% 64%, hsla(43, 52%, 54%, 0.1) 0px, transparent 85%);
-  
-  border-radius: 1.5rem;
-  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  background: linear-gradient(145deg, #111111 0%, #0D0D0D 100%);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255,255,255,0.03) inset;
+  transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
   z-index: 1;
-  border: 1px solid rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.07);
 }
 
-/* Pseudo-element for the rotating border glow */
 .bg-card::before, .premium-card::before {
   content: "";
   position: absolute;
@@ -193,55 +198,100 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 15rem;
-  height: 15rem;
+  width: 12rem;
+  height: 12rem;
   background-image: conic-gradient(
     from 0deg,
     transparent 0%,
     transparent 30%,
-    rgba(201, 168, 76, 0.4) 50%,
+    rgba(201, 168, 76, 0.35) 50%,
     transparent 70%,
     transparent 100%
   );
-  animation: rotate 6s linear infinite;
-  filter: blur(20px);
+  animation: rotate 7s linear infinite;
+  filter: blur(18px);
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.5s ease;
 }
 
-.bg-card:hover::before, .premium-card:hover::before {
-  opacity: 1;
-}
+.bg-card:hover::before, .premium-card:hover::before { opacity: 1; }
 
 .bg-card:hover, .bg-\[\#111111\]:hover, .premium-card:hover {
-  border-color: rgba(201, 168, 76, 0.4);
-  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8), 0px -10px 20px 0px rgba(255, 255, 255, 0.08) inset;
-  transform: translateY(-5px);
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(201, 168, 76, 0.1);
+  transform: translateY(-4px);
 }
 
-@keyframes rotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-
-/* Reset for specific button types that shouldn't have premium styles (like nav) */
+/* ── Nav Reset ───────────────────────────────────────────── */
 .nav-reset {
   box-shadow: none !important;
-  -webkit-box-reflect: none !important;
   background: none !important;
   padding: 0 !important;
   border: none !important;
   text-transform: none !important;
+  border-radius: 0 !important;
+  letter-spacing: normal !important;
+  font-weight: inherit !important;
+  transform: none !important;
+}
+.nav-reset:hover {
+  background: none !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
-
+/* ── Selection ───────────────────────────────────────────── */
 ::selection {
-  background: hsl(var(--primary) / 0.3);
+  background: hsl(43 52% 54% / 0.25);
   color: hsl(36 30% 94%);
 }
 
+/* ── Mobile Optimizations ────────────────────────────────── */
+@media (max-width: 768px) {
+  .premium-btn, .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  section {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
+
+/* ── Smooth Transitions for Page Elements ────────────────── */
+section {
+  transition: opacity 0.3s ease;
+}
+
+/* ── Carousel Container ──────────────────────────────────── */
+.embla {
+  overflow: hidden;
+  border-radius: 1.25rem;
+}
+.embla__container {
+  display: flex;
+  touch-action: pan-y;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: 0 0.75rem;
+}
+@media (min-width: 768px) {
+  .embla__slide { flex: 0 0 50%; }
+}
+@media (min-width: 1024px) {
+  .embla__slide { flex: 0 0 33.333%; }
+}
+
+/* ── Gradient Text Utility ───────────────────────────────── */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C9A84C 0%, #F5D98B 50%, #C9A84C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
