@@ -383,6 +383,8 @@ const Index = () => {
                 {t("Le copywriting immobilier n'est pas une dépense. C'est un levier de performance mesurable.", "Real estate copywriting isn't an expense. It's a measurable performance lever.")}
               </p>
             </AnimatedSection>
+          </div>
+        </div>
       </section>
 
       {/* ===== SERVICES ===== */}
